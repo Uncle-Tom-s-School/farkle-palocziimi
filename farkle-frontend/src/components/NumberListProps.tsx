@@ -1,35 +1,31 @@
-import React from 'react';
+import React from 'react'
 
-interface NumberListProps {
-  n: number;
-  onNumberClick: (index: number) => void;
-  selectedIndex: number | null;
+type NumberListProp = {
+  numberList:number[]
+  selectedIndexList:number[]
+  onClick: (index: number) => void
 }
 
-const NumberList: React.FC<NumberListProps> = ({ n, onNumberClick, selectedIndex }) => {
-  const generateList = (length: number): number[] => {
-    return Array.from({ length }, () => Math.floor(Math.random() * 6) + 1);
-  };
-
-  const numberList = generateList(n);
-
+const NumberListProps: React.FC<NumberListProp> = ({numberList, selectedIndexList, onClick}) => {
   return (
-    <div style={{ display: 'flex', gap: '10px' }}>
-      {numberList.map((number, index) => (
-        <button
-          key={index}
-          onClick={() => onNumberClick(index)}
+    <div className='numberList'>
+      {
+        numberList.map((num, i, a) => (
+          <button
+          key={i}
+          onClick={() => onClick(i)}
           style={{
-            backgroundColor: selectedIndex === index ? 'lightgreen' : 'transparent',
+            backgroundColor: selectedIndexList.includes(i) ? 'lightgreen' : 'transparent',
             cursor: 'pointer',
             padding: '10px',
           }}
         >
-          {number}
+          {num}
         </button>
-      ))}
+        ))
+      }
     </div>
-  );
-};
+  )
+}
 
-export default NumberList;
+export default NumberListProps
