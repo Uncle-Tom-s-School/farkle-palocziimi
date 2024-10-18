@@ -3,11 +3,9 @@ import React, { useState } from 'react';
 import NumberList from './components/NumberListProps';
 import './index.css'
 import MainGame from './components/MainGame';
-import ScoreBoard from './components/ScoreBoard';
+import ScoreBoard from './components/Scoreboard';
 
 const App: React.FC = () => {
-
-
 
   return (
     <>

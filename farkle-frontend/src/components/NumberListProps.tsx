@@ -1,24 +1,30 @@
 import React from 'react'
 
-type NumberListProp = {
+export type NumberListProp = {
   numberList:number[]
   selectedIndexList:number[]
-  onClick: (index: number) => void
+  lockedIndexes: number[]
+  setSelectedIndexList:React.Dispatch<React.SetStateAction<number[]>>
 }
 
-const NumberListProps: React.FC<NumberListProp> = ({numberList, selectedIndexList, onClick}) => {
+const NumberListProps: React.FC<NumberListProp> = ({numberList, selectedIndexList, lockedIndexes, setSelectedIndexList}) => {
   return (
     <div className='numberList'>
       {
-        numberList.map((num, i, a) => (
+        numberList.map((num, i) => (
           <button
           key={i}
-          onClick={() => onClick(i)}
+          onClick={() => {
+            const addedIndexList:number[] = selectedIndexList.includes(i) ? selectedIndexList.filter((x) => x != i) : [...selectedIndexList, i].sort()
+            setSelectedIndexList(addedIndexList)
+          }}
           style={{
-            backgroundColor: selectedIndexList.includes(i) ? 'lightgreen' : 'transparent',
+            backgroundColor: selectedIndexList.includes(i) ? 'lightgreen' : lockedIndexes.includes(i) ? "darkgreen" :'transparent',
+            color: selectedIndexList.includes(i) ? "white" :'inherit',
             cursor: 'pointer',
             padding: '10px',
           }}
+          disabled={lockedIndexes.includes(i)}
         >
           {num}
         </button>
