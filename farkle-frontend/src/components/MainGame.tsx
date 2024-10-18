@@ -35,6 +35,8 @@ const MainGame = () => {
         regenerateList(true)
     }
 
+    //Calculate: 2^(n-3) * k * 100
+
 
     useEffect(() => {
       regenerateList(true)
