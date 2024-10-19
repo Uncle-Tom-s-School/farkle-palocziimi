@@ -1,4 +1,5 @@
 import React from 'react'
+import '../index.css'
 
 export type NumberListProp = {
   numberList:number[]
@@ -18,12 +19,7 @@ const NumberListProps: React.FC<NumberListProp> = ({numberList, selectedIndexLis
             const addedIndexList:number[] = selectedIndexList.includes(i) ? selectedIndexList.filter((x) => x != i) : [...selectedIndexList, i].sort()
             setSelectedIndexList(addedIndexList)
           }}
-          style={{
-            backgroundColor: selectedIndexList.includes(i) ? 'lightgreen' : lockedIndexes.includes(i) ? "darkgreen" :'transparent',
-            color: selectedIndexList.includes(i) ? "white" :'inherit',
-            cursor: 'pointer',
-            padding: '10px',
-          }}
+          className={`btnDice${selectedIndexList.includes(i) ? ' selected' : lockedIndexes.includes(i) ? ' locked' : ''}`}
           disabled={lockedIndexes.includes(i)}
         >
           {num}

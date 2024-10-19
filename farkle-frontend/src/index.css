@@ -1,5 +1,9 @@
 :root {
-
+    --black: #040303ff;
+    --dark-slate-gray: #3a4e48ff;
+    --gray: #6a7b76ff;
+    --cambridge-blue: #8b9d83ff;
+    --silver: #beb0a7ff;
 }
 
 * {
@@ -10,8 +14,9 @@
 
 body {
     min-height: 100vh;
+    background: linear-gradient(225deg, rgb(76, 128, 93) 0%, rgba(139,157,131,1) 90%);
 
-    &>* {
+    & > * {
         min-height: 100vh;
 
         display: flex;
@@ -21,12 +26,119 @@ body {
     }
 }
 
+button {
+    outline: none;
+    border: 2px solid var(--dark-slate-gray);
+    border-radius: 20px;
+    transition: transform 0.1s;
+    cursor: pointer;
+}
+
 .gameContainer {
     align-self: center;
+
+    width: 30%;
+    padding: 2%;
+    height: 40vh;
+    background-color: var(--silver);
+    font-size: 3rem;
+    border-radius: 20px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+    & button {
+        width: 40%;
+        height: 20%;
+        font-size: 2rem;
+
+        &:hover:not(:disabled) {
+            transform: scale(1.05);
+        }
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
 }
 
 .numberList {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
+
+    & button {
+        font-size: 2rem;
+        width: 3.5vw;
+        height: 3.5vw;
+        outline: none;
+        border: 2px solid var(--dark-slate-gray);
+        border-radius: 20px;
+        transition: transform 0.1s;
+        cursor: pointer;
+        background-color: transparent;
+
+        &:hover:not(.locked) {
+            transform: scale(1.05);
+        }
+        &:active:not(.locked) {
+            transform: scale(0.95);
+        }
+        &.selected {
+            background-color: lightgreen;
+        }
+        &.locked {
+            background-color: darkgreen;
+            cursor: auto;
+            color: white;
+            font-style: italic;
+            padding-right: 5px;
+        }
+    }
+}
+
+.sbContainer {
+    background-color: var(--silver);
+    width: 15%;
+    height: 30vh;
+    /* padding-left: 1%; */
+    
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-evenly;
+
+    & div:not(.hr) {
+        margin-left: 5%;
+    }
+
+    & .hr {
+        width: 100%;
+        border: 0.5px solid var(--black);
+    }
+    
+    &:nth-of-type(1) {
+        border-radius: 0px 0px 20px 0px;
+    }
+    
+    &:nth-of-type(3) {
+        border-radius: 0px 20px 0px 0px;
+    }
+
+    & h3 {
+        font-size: 2rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    & p {
+        font-size: 1.5rem;
+    }
+
+    & h5 {
+        font-size: 1.8rem;
+    }
 }
