@@ -81,12 +81,12 @@ const MainGame: React.FC<PlayersData> = ({ players }) => {
         setLockedIndexes([])
         setSelectedIndexes([])
         
-        if (points[IsPlayer1Round ? 4 : 5] + calculatePoints(Dices) >= 10000) {
+        if (points[IsPlayer1Round ? 4 : 5] + calculatePoints(Dices) >= 5000) {
             alert("Játék vége!\r\n" + 
                 players[IsPlayer1Round ? 0 : 1].name + 
                 " nyert " + 
-                points[IsPlayer1Round ? 4 : 5] + 
-                calculatePoints(Dices) + 
+                (points[IsPlayer1Round ? 4 : 5] + 
+                calculatePoints(Dices)) + 
                 " ponttal.")
             setPoints(Array(6).fill(0))
         }
